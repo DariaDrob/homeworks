@@ -1,0 +1,41 @@
+
+h1 {
+    color: blue;
+}
+
+.text {
+    color: green;
+}
+
+#unique {
+    color: red;
+}
+
+a[target="_blank"] {
+    color: orange;
+}
+
+.nested .nested-text {
+    color: purple;
+}
+
+
+.child > span {
+    color: brown;
+}
+
+
+ul.combination > li {
+    color: teal;
+}
+
+
+p[data-info="info"] {
+    color: darkgoldenrod;
+}
+
+
+#complex-span.styled {
+    color: navy;
+}
+
