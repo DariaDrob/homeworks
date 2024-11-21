@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Працевлаштування - Міське кафе 1654</title>
+</head>
+<body>
+<h1>Працевлаштування</h1>
+
+
+<div>
+  <a href="index.html">Головна</a>
+  <a href="menu.html">Меню</a>
+  <a href="contacts.html">Контакти</a>
+</div>
+
+
+<h2>Заповніть анкету на вакансію <em>баристи</em> і ми дамо вам відповідь</h2>
+
+
+<form action="submit_application.html" method="post">
+  <fieldset>
+    <legend>Особиста інформація</legend>
+
+    <label for="name">Ім'я:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="surname">Прізвище:</label>
+    <input type="text" id="surname" name="surname" required>
+
+    <label for="email">Електронна пошта:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="number">Номер телефону:</label>
+    <input type="tel" id="number" name="number" required>
+  </fieldset>
+
+  <fieldset>
+    <legend>Зайнятість</legend>
+
+    <label for="full-time">
+      <input type="radio" id="full-time" name="employment" value="full" required>
+      Повна
+    </label>
+
+    <label for="part-time">
+      <input type="radio" id="part-time" name="employment" value="part-time">
+      Неповна
+    </label>
+
+    <label for="part-hours">
+      <input type="radio" id="part-hours" name="employment" value="part-hours">
+      Часткова
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Робочі дні</legend>
+
+    <label for="workdays">Оберіть робочі дні:</label>
+    <select id="workdays" name="workdays" required>
+      <option value="weekdays">Тільки будні</option>
+      <option value="weekends">Тільки вихідні</option>
+      <option value="any">Будь-які</option>
+    </select>
+  </fieldset>
+
+
+  <input type="submit" value="Надіслати">
+</form>
+
+</body>
+</html>
