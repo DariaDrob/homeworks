@@ -1,0 +1,69 @@
+.background1 {background-color: #b57b7b;}
+.background2 {background-color: #7c614e;}
+.background3 {background-color: #754c4c;}
+.background4 {
+    background-image: url('images/image9.jpg');
+    background-size: cover;}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* расстояние между изображениями */
+    justify-content: center; /* выравнивание по центру */
+}
+
+.gallery a {
+    flex: 1 1 calc(50% - 10px); /* два изображения в строке */
+    max-width: 45%;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.main-text {  color: #4a3f3d;
+    font-family: 'Arial', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    font-style:italic;
+    text-align:center;
+    text-shadow:
+            -1px -1px 0 #fff,
+            1px -1px 0 #fff,
+            -1px  1px 0 #fff,
+            1px  1px 0 #fff;
+}
+.text-menu a {
+    color: navajowhite;
+    text-align:center;
+    text-decoration: none;
+}
+.caps-text { color: #ffffff;
+    text-align:center;}
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.text1 {text-decoration: underline;
+    text-align:center;
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 30px;
+    color: #ffeea0;
+}
+.text2 {font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    font-size: 20px;
+    font-style: oblique;
+    text-shadow:
+            -1px -1px 0 #4a3f3d,
+            1px -1px 0 #4a3f3d,
+            -1px  1px 0 #4a3f3d,
+            1px  1px 0 #4a3f3d;
+}
+.centered-text {
+    text-align: center;
+}
+.uniform-border {
+    border: 2px solid #333333;
+}
