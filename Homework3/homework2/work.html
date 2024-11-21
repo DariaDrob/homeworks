@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Працевлаштування - Міське кафе 1654</title>
+</head>
+
+<body class="employment-background">
+<h1 class="main-text">Працевлаштування</h1>
+
+
+<div class="text-menu">
+  <a href="index.html">Головна</a>
+  <a href="menu.html">Меню</a>
+  <a href="contacts.html">Контакти</a>
+  <a href="work.html">Працевлаштування</a>
+</div>
+
+
+<h2 class="subheading-text uniform-border">Заповніть анкету на вакансію <em>баристи</em> і ми дамо вам відповідь</h2>
+
+
+<form action="submit_application.html" method="post">
+  <fieldset>
+    <legend class="section-text">Особиста інформація</legend>
+
+    <label for="name" class="content-text">Ім'я:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="surname" class="content-text">Прізвище:</label>
+    <input type="text" id="surname" name="surname" required>
+
+    <label for="email" class="content-text">Електронна пошта:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="number" class="content-text">Номер телефону:</label>
+    <input type="tel" id="number" name="number" required>
+  </fieldset>
+
+  <fieldset>
+    <legend class="section-text">Зайнятість</legend>
+    <div class="radio-group">
+    <label for="full-time">
+      <input type="radio" id="full-time" name="employment" value="full" required>
+     <p class="content-text">Повна</p>
+    </label>
+
+    <label for="part-time">
+      <input type="radio" id="part-time" name="employment" value="part-time">
+      <p class="content-text">Неповна</p>
+    </label>
+
+    <label for="part-hours">
+      <input type="radio" id="part-hours" name="employment" value="part-hours">
+      <p class="content-text" >Часткова</p>
+    </label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend class="section-text">Робочі дні</legend>
+
+    <label for="workdays" class="text2">Оберіть робочі дні:</label>
+    <select id="workdays" name="workdays" required>
+      <option value="weekdays" class="content-text">Тільки будні</option>
+      <option value="weekends" class="content-text">Тільки вихідні</option>
+      <option value="any" class="content-text">Будь-які</option>
+    </select>
+  </fieldset>
+
+
+  <input type="submit" value="Надіслати">
+</form>
+</p>
+
+</body>
+</html>

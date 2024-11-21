@@ -1,7 +1,7 @@
-.background1 {background-color: #b57b7b;}
-.background2 {background-color: #7c614e;}
-.background3 {background-color: #754c4c;}
-.background4 {
+.main-background {background-color: #b57b7b;}
+.menu-background {background-color: #7c614e;}
+.contacts-background {background-color: #754c4c;}
+.employment-background {
     background-image: url('images/image9.jpg');
     background-size: cover;}
 .gallery {
@@ -38,20 +38,20 @@
     text-align:center;
     text-decoration: none;
 }
-.caps-text { color: #ffffff;
+.subheading-text { color: #ffffff;
     text-align:center;}
 .center-image {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
-.text1 {text-decoration: underline;
+.section-text {text-decoration: underline;
     text-align:center;
     font-family: 'Times New Roman', sans-serif;
     font-size: 30px;
     color: #ffeea0;
 }
-.text2 {font-family: 'Arial', sans-serif;
+.content-text {font-family: 'Arial', sans-serif;
     color: #ffffff;
     font-size: 20px;
     font-style: oblique;
@@ -66,4 +66,14 @@
 }
 .uniform-border {
     border: 2px solid #333333;
+}
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
