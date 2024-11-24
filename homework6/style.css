@@ -1,0 +1,11 @@
+.styled-table {
+  border: 1px solid #000;
+  width: 600px;
+  height: 400px;
+  border-spacing: 0px;
+}
+
+.styled-table td {
+  border: 10px solid #000;
+  padding: 5px;
+}
