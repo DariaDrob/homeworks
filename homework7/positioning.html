@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positioning</title>
+    <style>
+        .static {
+            position: static;
+            background-color: #ae5050;
+            padding: 10px;
+        }
+        .relative {
+            position: relative;
+            top: 20px;
+            left: 20px;
+            background-color: #3099bc;
+            padding: 10px;
+        }
+        .absolute {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            background-color: #30e430;
+            padding: 10px;
+        }
+        .fixed {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: #b58d1c;
+            padding: 10px;
+        }
+        .sticky {
+            position: sticky;
+            top: 0;
+            background-color: #3b25cf;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="static">Static</div>
+<div class="relative">Relative</div>
+<div class="absolute">Absolute</div>
+<div class="sticky">Sticky</div>
+<div style="height: 1000px;">Місце для скролінгу</div>
+<div class="fixed">Fixed</div>
+</body>
+</html>
