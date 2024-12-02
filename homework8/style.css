@@ -24,6 +24,7 @@
     width: 180px;
     height: 80px;
     margin: 20px;
+    float: right;
     background-color: #a0a0a0;
 }
 
@@ -40,3 +41,15 @@
     float: left;
 }
 
+.centered {
+    margin: 0 auto;
+    width: 700px;
+}
+
+.container-for-small {
+    overflow: hidden;
+    float: none;
+}
+.clear {
+    clear: both;
+}
