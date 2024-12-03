@@ -23,33 +23,25 @@
 .small {
     width: 180px;
     height: 80px;
-    margin: 20px;
-    float: right;
-    background-color: #a0a0a0;
+    margin: 10px auto;
 }
 
 .large {
     width: 400px;
     height: 200px;
     margin: 10px;
-    float: right;
     background-color: #606060;
 }
-
 
 .large.left {
     float: left;
 }
 
+
 .centered {
     margin: 0 auto;
-    width: 700px;
+    width: 700px
+    text-align: center;
 }
 
-.container-for-small {
-    overflow: hidden;
-    float: none;
-}
-.clear {
-    clear: both;
-}
+
