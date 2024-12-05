@@ -40,7 +40,8 @@
 
 .centered {
     margin: 0 auto;
-    width: 700px
+    width: 1020px;
+    margin: 0 auto;
     text-align: center;
 }
 
