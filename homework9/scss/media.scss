@@ -1,0 +1,34 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint == small {
+    @media (max-width: 480px) { @content; }
+  } @else if $breakpoint == medium {
+    @media (max-width: 768px) { @content; }
+  }
+}
+
+.hero {
+  @include respond(small) {
+    padding: 20px;
+    h1 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.statistics {
+  @include respond(medium) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.how-i-work {
+  @include respond(small) {
+    iframe {
+      height: 250px;
+    }
+  }
+}

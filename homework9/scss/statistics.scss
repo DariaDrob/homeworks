@@ -1,0 +1,36 @@
+.statistics {
+  background-color: $primary-color;
+  padding: 50px 20px;
+  color: #ffffff;
+
+  .stats-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    max-width: 100px;
+
+    img {
+      width: 40px;
+      height: 40px;
+      margin-right: 5px;
+    }
+
+    .stat-text {
+      p {
+        margin: 0;
+
+        &.stat-number {
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

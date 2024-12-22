@@ -1,0 +1,17 @@
+.about-me {
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+
+  h2 {
+    margin-bottom: 20px;
+    color: $text-color;
+  }
+
+  p {
+    max-width: 600px;
+    margin: 0 auto;
+    color: $text-secondary-color;
+  }
+}

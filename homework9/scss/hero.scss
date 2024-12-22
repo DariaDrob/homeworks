@@ -1,0 +1,32 @@
+.hero {
+  background-color: $secondary-color;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 15%;
+  width: 100%;
+
+  h1 {
+    margin-bottom: 20px;
+    color: $text-color;
+  }
+
+  p {
+    max-width: 600px;
+    color: $text-secondary-color;
+  }
+
+  .btn {
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    cursor: pointer;
+    margin-top: 20px;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
