@@ -1,0 +1,38 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+
+svg {
+    display: block;
+    margin: 0 auto;
+}
+
+
+.animated-circle {
+    animation: changeColors 2s infinite alternate;
+}
+
+@keyframes changeColors {
+    0% {
+        fill: #dd8d7f;
+        stroke: #6609f1;
+    }
+    100% {
+        fill: #d466ff;
+        stroke: #76278e;
+    }
+}
