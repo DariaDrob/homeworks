@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework14</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container-fluid">
+    <header class="bg-light py-3 header">
+        <nav>
+            <ul class="menu d-flex justify-content-center">
+                <li class="mx-3">Тип приміщення
+                    <ul class="submenu p-2">
+                        <li>Житлові апартаменти</li>
+                        <li>Офісні приміщення</li>
+                    </ul>
+                </li>
+                <li class="mx-3">Контакти для зв'язку
+                    <ul class="submenu p-2">
+                        <li>Пошта</li>
+                        <li>Телефон</li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="row">
+
+        <div class="col-md-3 left">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="image1.png" class="d-block w-100" alt="Зображення 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="image2.png" class="d-block w-100" alt="Зображення 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="image3.png" class="d-block w-100" alt="Зображення 3">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="image4.png" class="d-block w-100" alt="Зображення 4">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Попередній</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Наступний</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-6 main">
+            <h2>Зміст пропозицій</h2>
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Відділ приватних будинків продаж
+                            </button>
+                        </h2>
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Модливості іпотеки
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Локальні апартаменти
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Аренда довгострокова
+                            </button>
+                        </h2>
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Винаймання офісу
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Варіанти купівлі
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3 right">
+            <h2>Продаж та оренда нерухомості</h2>
+            <p>Ласкаво просимо на наш сайт, де ви знайдете ідеальні рішення для купівлі, продажу чи оренди квартир, будинків та офісів. Ми допомагаємо обрати найкраще житло чи комерційне приміщення відповідно до ваших потреб і бюджету.
+
+                Що ми пропонуємо?
+
+                Широкий вибір об’єктів нерухомості в зручних районах.
+                Актуальні пропозиції з детальними описами та фотографіями.
+                Індивідуальний підхід до кожного клієнта.
+                Професійний супровід на всіх етапах угоди.
+                З нами знайти мрію — легко! Обирайте нерухомість із комфортом і впевненістю. 🌟</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 ТОВ Житлорент.</p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
