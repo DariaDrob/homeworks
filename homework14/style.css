@@ -7,20 +7,17 @@ body {
     background-color: #9f9692 !important;
     text-align: center;
     padding: 15px;
-    width: 100%;
+    width: 100vw;
+    margin: 0;
     box-sizing: border-box;
 }
 
-.main, .left, .right {
-    padding: 15px;
-}
 
-.left {
-    background-color: #787776;
-}
 
-.right {
+.left, .right {
     background-color: #787776;
+    flex-direction: column;
+
 }
 
 .menu {
@@ -48,9 +45,9 @@ body {
 .menu li:hover > ul {
     display: block;
 }
-
-.footer {
-    margin-top: 20px;
+.main, .left, .right {
+    padding: 15px;
+    height: auto;
 }
 
 .slider img {
@@ -69,4 +66,6 @@ body {
 
 .container-fluid {
     padding: 0 !important;
+
 }
+

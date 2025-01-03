@@ -63,67 +63,61 @@
         </div>
 
         <div class="col-md-6 main">
-            <h2>Зміст пропозицій</h2>
-            <div class="accordion" id="accordionExample">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Відділ приватних будинків продаж
-                            </button>
-                        </h2>
-                        <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Модливості іпотеки
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                        <div class="card-body">
-                            Локальні апартаменти
-                        </div>
-                    </div>
+            <h2 class="text-center mb-4">Зв'яжіться з нами</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Ваше ім'я</label>
+                    <input type="text" class="form-control" id="name" placeholder="Введіть ваше ім'я" required>
                 </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Аренда довгострокова
-                            </button>
-                        </h2>
-                        <h2 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Винаймання офісу
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                        <div class="card-body">
-                            Варіанти купівлі
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Електронна пошта</label>
+                    <input type="email" class="form-control" id="email" placeholder="example@email.com" required>
                 </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-3 right">
-            <h2>Продаж та оренда нерухомості</h2>
-            <p>Ласкаво просимо на наш сайт, де ви знайдете ідеальні рішення для купівлі, продажу чи оренди квартир, будинків та офісів. Ми допомагаємо обрати найкраще житло чи комерційне приміщення відповідно до ваших потреб і бюджету.
-
-                Що ми пропонуємо?
-
-                Широкий вибір об’єктів нерухомості в зручних районах.
-                Актуальні пропозиції з детальними описами та фотографіями.
-                Індивідуальний підхід до кожного клієнта.
-                Професійний супровід на всіх етапах угоди.
-                З нами знайти мрію — легко! Обирайте нерухомість із комфортом і впевненістю. 🌟</p>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Номер телефону</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="+380123456789" required>
+                </div>
+                <div class="mb-3">
+                    <label for="topic" class="form-label">Тема звернення</label>
+                    <select class="form-select" id="topic" required>
+                        <option selected disabled>Оберіть тему</option>
+                        <option value="sales">Продаж нерухомості</option>
+                        <option value="rent">Оренда житлових приміщень</option>
+                        <option value="support">Оренда офісних приміщень</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Ваше повідомлення</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Напишіть ваше повідомлення тут..." required></textarea>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="reset" class="btn btn-secondary">Очистити</button>
+                    <button type="submit" class="btn btn-primary">Відправити</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+</div>
 
-    <div class="footer">
-        <p>© 2025 ТОВ Житлорент.</p>
-    </div>
+
+<div class="col-md-3 right">
+    <h2>Продаж та оренда нерухомості</h2>
+    <p>Ласкаво просимо на наш сайт, де ви знайдете ідеальні рішення для купівлі, продажу чи оренди квартир, будинків та офісів. Ми допомагаємо обрати найкраще житло чи комерційне приміщення відповідно до ваших потреб і бюджету.
+
+        Що ми пропонуємо?
+
+        Широкий вибір об’єктів нерухомості в зручних районах.
+        Актуальні пропозиції з детальними описами та фотографіями.
+        Індивідуальний підхід до кожного клієнта.
+        Професійний супровід на всіх етапах угоди.
+        З нами знайти мрію — легко! Обирайте нерухомість із комфортом і впевненістю. 🌟</p>
+</div>
+</div>
+
+<div class="footer">
+    <p>© 2025 ТОВ Житлорент.</p>
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
