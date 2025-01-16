@@ -3,167 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <title>Эксклюзивная мебель</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<header class="header">
-    <img src="image3.png" alt="Логотип" class="logo">
-    <nav class="navigation">
-        <ul>
-            <li><a href="#about">О нас</a></li>
-            <li><a href="#projects">Проекты</a></li>
-            <li><a href="#materials">Материалы</a></li>
-            <li><a href="#reviews">Отзывы</a></li>
+<body class="font-roboto ">
+
+
+<header class="flex items-center justify-between py-6 px-10">
+    <img src="image3.png" alt="Логотип" class="h-12">
+    <nav>
+        <ul class="space-y-4 text-lg text-left">
+            <li><a href="#about" class="hover:underline">О нас</a></li>
+            <li><a href="#projects" class="hover:underline">Проекты</a></li>
+            <li><a href="#materials" class="hover:underline">Материалы</a></li>
+            <li><a href="#reviews" class="hover:underline">Отзывы</a></li>
         </ul>
     </nav>
-    <div class="contact">+7 999 999 99 99</div>
+    <div class="text-lg font-medium">+7 999 999 99 99</div>
 </header>
 
-<main class="main-content">
-    <section class="intro">
-        <div class="intro-text">
-            <h1>Эксклюзивная<br>и нестандартная<br>мебель для дома</h1>
-            <p>Мы можем произвести любую мебель для<br>вашего проекта и найти производственное<br>решение любой задумки.</p>
-            <a href="#order" class="btn-order">ЗАКАЗАТЬ ПРОЕКТ</a>
-        </div>
-    </section>
 
-    <section class="gallery">
-        <div class="image-small">
-            <img src="image2.png" alt="Меньшее фото">
+<main class="px-10">
+    <section class="mt-10">
+        <div class="flex justify-between items-start">
+            <div class="text-left max-w-lg">
+                <h1 class="text-5xl font-bold leading-snug mb-6">
+                    Эксклюзивная<br>
+                    и нестандартная<br>
+                    мебель для дома
+                </h1>
+                <p class="text-lg">
+                    Мы можем произвести любую мебель для<br>
+                    вашего проекта и найти производственное<br>
+                    решение любой задумки.
+                </p>
+            </div>
+            <a href="#order" class="text-black underline text-lg font-semibold mt-4 block">ЗАКАЗАТЬ ПРОЕКТ</a>
         </div>
-        <div class="image-large">
-            <img src="image1.png" alt="Большое фото">
-        </div>
-    </section>
-
-    <section class="experience">
-        <div class="experience-text">
-            <h2>Более 5 лет создаем <br>мебель для вашего <br>комфорта</h2>
-            <p>Мы – команда профессионалов, которые могут произвести любую мебель для вашего проекта, а также найти производственное решение любой задумки.</p>
-            <p>Наша основная цель – реализовывать самые смелые задумки, и делать это качественно и аккуратно.</p>
-            <p>В качестве материалов мы используем натуральные – стекло, дерево, бетон, камень, металл и эпоксидную смолу.</p>
-        </div>
-    </section>
-        <div class="stats">
-            <p>1 год<br><span>гарантии на всю продукцию</span></p>
-            <p>300+<br><span>выполненных проектов</span></p>
-            <p>15 дней<br><span>срок производства</span></p>
-        </div>
-
-
-    <section class="workflow">
-        <h2>Как мы работаем</h2>
-        <div class="workflow-details">
-            <div class="workflow-step">
-                <p>Алгоритм работы с нами для удобства и понимания проекта</p>
+        <div class="flex mt-10 space-x-6 justify-center">
+            <div style="width: 329px; height: 493px;">
+                <img src="image2.png" alt="Меньшее фото" class="w-full h-full object-cover">
             </div>
-            <div class="workflow-step">
-                <h3>Идея</h3>
-                <p>Клиент приходит к нам с идеей. Это может<br> быть изображение, эскиз или другой<br> референс. А мы думаем над тем, как это <br>реализовать, делаем технические чертежи<br> и предлагаем решения по материалам.</p>
-            </div>
-            <div class="workflow-step">
-                <h3>Техническое задание</h3>
-                <p>Вместе с клиентом формулируем <br>конкретное ТЗ, которое включает в себя <br>визуализацию изделия, эскизный чертеж <br>с габаритами, информацию по материалам<br> и отделке, срок реализации проекта<br> и другие обязательные пункты.</p>
-            </div>
-            <div class="workflow-step">
-                <h3>Коммерческое предложение</h3>
-                <p>Предпочтительно используем<br> натуральные материалы. Но любую смету <br> можем оптимизировать, упростив <br>материалы или конструктив. Сможем <br>подстроиться под бюджет клиента <br>и согласуем коммерческое предложение.</p>
-            </div>
-            <div class="workflow-step">
-                <h3>Подготовка рабочего проекта</h3>
-                <p>Создадим рабочую документацию <br>и чертежи. Это фундамент качественного <br>производства. На этом этапе утверждаем<br> с клиентом все габариты и материалы, <br>чертежи и приступаем к производству.</p>
-            </div>
-            <div class="workflow-step">
-                <h3>Производство и монтаж</h3>
-                <p>Производство занимает от 15 рабочих<br> дней, в зависимости от сложности<br> и объёма. Монтажом тоже занимаемся<br> самостоятельно. Ведь мы это сделаем<br> быстро и аккуратно.</p>
+            <div class="w-80"></div>
+            <div style="width: 678px; height: 809px;">
+                <img src="image1.png" alt="Большое фото" class="w-full h-full object-cover">
             </div>
         </div>
     </section>
 
-    <section class="projects">
-        <h2>Проекты</h2>
-        <div class="projects-grid">
-            <div class="project-item">
-                <img src="project1.jpg" alt="Тумба под телевизор">
-                <p>Тумба под телевизор</p>
+    <section class="experience flex flex-col lg:flex-row justify-between items-start mt-16">
+        <div class="experience-text max-w-lg">
+            <h2 class="text-5xl font-bold leading-tight mb-6">
+                Более 5 лет создаем<br>
+                мебель для вашего<br>
+                комфорта
+            </h2>
+        </div>
+        <div class="experience-details max-w-lg text-right space-y-6">
+            <p class="text-lg">
+                Мы – команда профессионалов, которые могут произвести любую мебель для вашего проекта, а также найти производственное решение любой задумки.
+            </p>
+            <p class="text-lg">
+                Наша основная цель – реализовывать самые смелые задумки, и делать это качественно и аккуратно.
+            </p>
+            <p class="text-lg">
+                В качестве материалов мы используем натуральные – стекло, дерево, бетон, камень, металл и эпоксидную смолу.
+            </p>
+            <p class="font-bold text-lg">
+                1 год<br><span class="text-gray-500 text-base">гарантии на всю продукцию</span>
+            </p>
+            <p class="font-bold text-lg">
+                300+<br><span class="text-gray-500 text-base">выполненных проектов</span>
+            </p>
+            <p class="font-bold text-lg">
+                15 дней<br><span class="text-gray-500 text-base">срок производства</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="workflow mt-16 px-8 flex flex-col">
+        <div class="workflow-header flex items-center justify-between mb-12">
+                <h2 class="text-5xl font-bold">
+                    Как мы работаем
+                </h2>
+                <p class="text-lg text-gray-600 ml-8">
+                    Алгоритм работы с нами для удобства и понимания проекта
+                </p>
             </div>
-            <div class="project-item">
-                <img src="project2.jpg" alt="Кухня">
-                <p>Кухня</p>
+
+            <div class="workflow-content flex justify-end">
+                <div class="workflow-steps w-1/2 space-y-12">
+                    <div class="workflow-step border-t border-gray-300 pt-6">
+                        <h3 class="text-3xl font-semibold mb-4">Идея</h3>
+                        <p class="text-lg">
+                            Клиент приходит к нам с идеей. Это может быть изображение, эскиз или
+                            другой референс. А мы думаем над тем, как это реализовать, делаем
+                            технические чертежи и предлагаем решения по материалам.
+                        </p>
+                    </div>
+
+                    <div class="workflow-step border-t border-gray-300 pt-6">
+                        <h3 class="text-3xl font-semibold mb-4">Техническое задание</h3>
+                        <p class="text-lg">
+                            Вместе с клиентом формулируем конкретное ТЗ, которое включает в себя
+                            визуализацию изделия, эскизный чертеж с габаритами, информацию по
+                            материалам и отделке, срок реализации проекта и другие обязательные
+                            пункты.
+                        </p>
+                    </div>
+
+                    <div class="workflow-step border-t border-gray-300 pt-6">
+                        <h3 class="text-3xl font-semibold mb-4">Коммерческое предложение</h3>
+                        <p class="text-lg">
+                            Предпочтительно используем натуральные материалы. Но любую смету можем
+                            оптимизировать, упростив материалы или конструктив. Сможем подстроиться
+                            под бюджет клиента и согласуем коммерческое предложение.
+                        </p>
+                    </div>
+
+                    <div class="workflow-step border-t border-gray-300 pt-6">
+                        <h3 class="text-3xl font-semibold mb-4">Подготовка рабочего проекта</h3>
+                        <p class="text-lg">
+                            Создадим рабочую документацию и чертежи. Это фундамент качественного
+                            производства. На этом этапе утверждаем с клиентом все габариты и материалы,
+                            чертежи и приступаем к производству.
+                        </p>
+                    </div>
+
+                    <div class="workflow-step border-t border-gray-300 pt-6">
+                        <h3 class="text-3xl font-semibold mb-4">Производство и монтаж</h3>
+                        <p class="text-lg">
+                            Производство занимает от 15 рабочих дней, в зависимости от сложности
+                            и объёма. Монтажом тоже занимаемся самостоятельно. Ведь мы это сделаем
+                            быстро и аккуратно.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="project-item">
-                <img src="project3.png" alt="Гостиная">
-                <p>Гостиная</p>
-            </div>
-            <div class="project-item">
-                <img src="project4.png" alt="Ванная комната">
-                <p>Ванная комната</p>
-            </div>
-            <div class="project-item">
-                <img src="project5.png" alt="Спальня">
-                <p>Спальня</p>
-            </div>
-            <div class="project-item">
-                <img src="project6.png" alt="Декор">
-                <p>Декор</p>
-            </div>
+        </section>
+
+    <section class="max-w-7xl mx-auto py-16">
+        <h2 class="text-4xl font-bold text-left mb-10">Проекты</h2>
+        <div class="grid grid-cols-3 gap-6">
+            <img src="project1.jpg" alt="Проект 1" class="w-[446px] h-[580px] object-cover">
+            <img src="project2.jpg" alt="Проект 2" class="w-[446px] h-[580px] object-cover">
+            <img src="project3.png" alt="Проект 3" class="w-[446px] h-[580px] object-cover">
+            <img src="project4.png" alt="Проект 4" class="w-[446px] h-[580px] object-cover">
+            <img src="project5.png" alt="Проект 5" class="w-[446px] h-[580px] object-cover">
+            <img src="project6.png" alt="Проект 6" class="w-[446px] h-[580px] object-cover">
         </div>
     </section>
 
 
-    <section class="reviews">
-        <h2>Отзывы</h2>
-        <div class="reviews-container">
-            <div class="review-card">
-                <img src="icon1.png" alt="Игорь Иванов" class="review-icon">
-                <p><strong>Игорь Иванов</strong></p>
-                <p>Обратился к Aveji по рекомендации. Команда сразу поняла, какой дизайн я хочу. Итог понравился, все на высшем уровне.</p>
-            </div>
-            <div class="review-card">
-                <img src="icon1.png" alt="Ольга Иванова" class="review-icon">
-                <p><strong>Ольга Иванова</strong></p>
-                <p>После пары заказов я убедилась, что за мебелью теперь только к ним. Любые решения, любые размеры и форм-факторы.</p>
-            </div>
-            <div class="review-card">
-                <img src="icon1.png" alt="Аркадий Макаров" class="review-icon">
-                <p><strong>Аркадий Макаров</strong></p>
-                <p>Aveji — настоящие профессионалы своего дела. Сделали мой заказ быстро, качественно и аккуратно. Спасибо!</p>
-            </div>
-        </div>
-    </section>
+    <section class="max-w-7xl mx-auto py-16 flex items-center">
 
-    <section class="contact-form">
-        <div class="form-image">
-            <img src="room.png" alt="Современная гостиная">
-        </div>
-        <div class="form-container">
-            <h2>Хотите заказать проект?</h2>
-            <p>Оставьте заявку, и мы вам перезвоним</p>
-            <form>
-                <label for="name">Имя</label>
-                <input type="text" id="name" placeholder="Ваше имя">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" placeholder="Ваш e-mail">
-                <label for="phone">Телефон</label>
-                <input type="tel" id="phone" placeholder="Ваш номер телефона">
-                <button type="submit">Отправить заявку</button>
-            </form>
-            <div class="app-links">
-                <img src="appstore.png" alt="App Store">
-                <img src="googleplay.png" alt="Google Play">
-            </div>
-        </div>
-    </section>
+    <img src="room.png" alt="Room" class="w-1/2">
 
-    <footer class="footer">
-        <p>© 2023 AVEJI. ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
-        <p><a href="#">Политика конфиденциальности</a> / <a href="#">Оплата и доставка</a></p>
-        <div class="social-links">
-            <a href="#">Вконтакте</a>
-            <a href="#">Телеграм</a>
+    <form class="w-1/2 ml-8">
+        <h2 class="text-4xl font-bold mb-4">Хотите заказать проект?</h2>
+        <p class="text-sm text-gray-600 mb-6">Оставьте заявку, и мы вам перезвоним</p>
+        <div class="space-y-4">
+            <input type="text" placeholder="Имя" class="w-full border-b-2 border-gray-300 focus:border-gray-600 outline-none py-2">
+            <input type="email" placeholder="E-mail" class="w-full border-b-2 border-gray-300 focus:border-gray-600 outline-none py-2">
+            <input type="tel" placeholder="Телефон" class="w-full border-b-2 border-gray-300 focus:border-gray-600 outline-none py-2">
         </div>
-    </footer>
+        <button type="submit" class="mt-6 w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800">
+            Отправить заявку
+        </button>
+    </form>
+</section>
+
+
+<footer class=" py-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <p class="text-sm text-gray-600">© 2023 AVEJI. Все права защищены.</p>
+        <div class="flex space-x-6">
+            <a href="#" class="text-sm text-gray-600">Политика конфиденциальности / Оплата и доставка</a>
+            <a href="#" class="text-sm text-gray-600">ВКонтакте</a>
+            <a href="#" class="text-sm text-gray-600">Телеграм</a>
+        </div>
+    </div>
+</footer>
 </main>
 </body>
 </html>
