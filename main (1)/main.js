@@ -30,13 +30,11 @@ console.log(userObj);
  * userObj.lastName  ← 'Smith'
  * userObj.fullName() → 'John Smith'.
  */
-let userObj = {
-    firstName: 'John',
-    lastName: 'Smith',
-    fullName() {
-        return this.firstName + ' ' + this.lastName;
-    }
-};
+userObj.fullName = function() {
+
+    return this.firstName + ' ' + this.lastName;
+
+}
 // console.log(userObj.fullName()) // John Smith
 console.log(userObj.fullName());
 /*
@@ -70,6 +68,13 @@ console.log(defUpperStr())             // DEFAULT TEXT
  * evenFn(15) → [2, 4, 6, 8, 10, 12, 14]
  * evenFn(20) → [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
  */
+function evenFn(n) {
+    let result = [];
+    for (let i = 2; i <= n; i += 2) {
+        result.push(i);
+    }
+    return result;
+}
 
 // console.log(evenFn(10)) // [2, 4, 6, 8, 10]
 // console.log(evenFn(15)) // [2, 4, 6, 8, 10, 12, 14]
@@ -127,14 +132,14 @@ console.log(weekFn('2')) // null
  * Використання операторів if, switch - заборонено.
  */
 function ageClassification(n) {
-    return n < 0 ? null :
-        n <= 24 ? 'Дитинство' :
-            n <= 44 ? 'Молодість' :
-                n <= 65 ? 'Зрілість' :
-                    n <= 75 ? 'Старість' :
-                        n <= 90 ? 'Довголіття' :
-                            n <= 122 ? 'Рекорд' :
-                                null;
+    if (n < 0) return null;
+    if (n <= 24) return 'Дитинство';
+    if (n <= 44) return 'Молодість';
+    if (n <= 65) return 'Зрілість';
+    if (n <= 75) return 'Старість';
+    if (n <= 90) return 'Довголіття';
+    if (n <= 122) return 'Рекорд';
+    return null;
 }
 
 
@@ -192,7 +197,15 @@ function ageClassification(n) {
  * oddFn(15) → [1, 3, 5, 7, 9, 11, 13, 15]
  * oddFn(20) → [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
  */
-
+function oddFn(n) {
+    let result = [];
+    let i = 1;
+    while (i <= n) {
+        result.push(i);
+        i += 2;
+    }
+    return result;
+}
 // console.log(oddFn(10)) // [1, 3, 5, 7, 9]
 // console.log(oddFn(15)) // [1, 3, 5, 7, 9, 11, 13, 15]
 // console.log(oddFn(20)) // [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
