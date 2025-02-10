@@ -3,7 +3,7 @@
 // #1 Реалізуйте функцію generateKey(length, characters), яка повертає рядок випадкових символів із набору characters довжиною length
 // Функцію треба покласти в файл functions.js та імпортувати за допомогою import
 
-function generateKey(keyLength, symbols) {
+function generateKey(length, symbols) {
     let result = '';
     for (let i = 0; i < length; i++) {
         result += characters[Math.floor(Math.random() * characters.length)];
@@ -28,7 +28,9 @@ function generateKey(keyLength, symbols) {
 // Заборонено використовувати for. Користуватися тільки методами масиву.
 
 function average(mixed) {
-
+    const numbers = mixed
+        .map(item => Number(item))
+        .filter(item => !isNaN(item));
 }
 
 // Check:
