@@ -104,18 +104,24 @@ for (let user of users) {
   }
 
   // #1 Повернути масив телефонних номерів користувачів, у яких баланс менше ніж 2000 доларів.
-  if (balance < 2000) {
-    phones.push(user.phone);
-  }}
+  const phones = users
+      .filter(user => parseBalance(user.balance) < 2000)
+      .map(user => user.phone);
+
+  console.log('Телефоны пользователей с балансом меньше 2000:', phones);
 
 // #2 Знайти суму всіх балансів користувачів
-total += balance;
+  const totalBalance = users
+      .map(user => parseBalance(user.balance))
+      .reduce((sum, balance) => sum + balance, 0);
+
+  console.log('Общая сумма балансов:', totalBalance.toFixed(2));
 
 
 // #3 Знайти користувача з максімальним балансом, вивести його
-if (balance > parseBalance(richest.balance)) {
-  richest = user;
-}
+  const richestUser = users.reduce((maxUser, user) =>
+      parseBalance(user.balance) > parseBalance(maxUser.balance) ? user : maxUser
+  );
 
 
 
