@@ -78,7 +78,6 @@ const person = {
 */
 
 function getLocalStorageInfo(key) {const data = localStorage.getItem(key);
-  return data ? JSON.parse(data) : undefined;
 }
 
 // console.log(getLocalStorageInfo('language')); // en
