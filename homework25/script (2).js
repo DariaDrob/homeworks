@@ -37,9 +37,19 @@ function createDomElement(tagName, textContent, container) {
  * і можливим таймаутом в секундах
  * Перший параметр - імʼя змінної
  * Другий параметр - значення змінної
- * Третій параметр (опціональний)
- *
- * Вимоги:
+ * Третій параметр (опціональний)*/
+ function setLocalStorageInfo(key, value, timeout) {
+  localStorage.setItem(key, JSON.stringify(value));
+  console.log(` "${key}" saved.`);
+
+  if (timeout) {
+    setTimeout(() => {
+      localStorage.removeItem(key);
+      console.log(` "${key}" delete for ${timeout} seconds.`);
+    }, timeout * 1000);
+  }
+}
+ /* Вимоги:
  *
  * 1. Функція приймає два обовʼязкові аргументи: key (назва інформаційного параметра) та value (значення параметра).
  * 2. Функція приймає третій опціональний параметр - таймаут в секундах. Якщо він переданий, видаляє змінну через цей час
