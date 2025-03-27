@@ -66,7 +66,7 @@ async function getPost() {
         resultDiv.innerHTML = `<p>${error.message}</p>`;
         console.log(error);
     } finally {
-        processingDiv.classList.add('hidden'); // Приховуємо "Processing..."
+        processingDiv.classList.add('hidden');
     }
 }
 
@@ -74,8 +74,8 @@ async function getComments(postId) {
     const commentsDiv = document.getElementById('comments');
     const processingDiv = document.getElementById('processing');
 
-    processingDiv.classList.remove('hidden'); // Показуємо "Processing..."
-    commentsDiv.innerHTML = ''; // Очищаємо попередні коментарі
+    processingDiv.classList.remove('hidden');
+    commentsDiv.innerHTML = ''; 
 
     try {
         const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`);
