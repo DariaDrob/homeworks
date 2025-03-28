@@ -1,4 +1,4 @@
-async function getWeather() {
+export async function getWeather() {
     const city = document.getElementById('cityInput').value.trim();
     const resultDiv = document.getElementById('weatherResult');
     const processingDiv = document.getElementById('processing');
@@ -36,7 +36,7 @@ async function getWeather() {
     }
 }
 
-async function getPost() {
+export async function getPost() {
     const postId = document.getElementById('postIdInput').value;
     const resultDiv = document.getElementById('postResult');
     const processingDiv = document.getElementById('processing');
@@ -59,9 +59,11 @@ async function getPost() {
             <h2>Пост #${post.id}</h2>
             <p><strong>Заголовок:</strong> ${post.title}</p>
             <p><strong>Текст:</strong> ${post.body}</p>
-            <button onclick="getComments(${post.id})">Показати коментарі</button>
+            <button id="commentsButton-${post.id}" class="commentsButton">Показати коментарі</button>
             <div id="comments"></div>
         `;
+        
+        document.getElementById(`commentsButton-${post.id}`).addEventListener('click', () => getComments(post.id));
     } catch (error) {
         resultDiv.innerHTML = `<p>${error.message}</p>`;
         console.log(error);
@@ -70,12 +72,12 @@ async function getPost() {
     }
 }
 
-async function getComments(postId) {
+export async function getComments(postId) {
     const commentsDiv = document.getElementById('comments');
     const processingDiv = document.getElementById('processing');
 
     processingDiv.classList.remove('hidden');
-    commentsDiv.innerHTML = ''; 
+    commentsDiv.innerHTML = '';
 
     try {
         const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`);
@@ -95,4 +97,10 @@ async function getComments(postId) {
         console.log(error);
     } finally {
         processingDiv.classList.add('hidden');
-    }}
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('weatherButton').addEventListener('click', getWeather);
+    document.getElementById('postButton').addEventListener('click', getPost);
+});
