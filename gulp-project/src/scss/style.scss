@@ -1,0 +1,17 @@
+$primary-color: #3498db;
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background: $primary-color;
+  padding: 1rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: darken($primary-color, 10%);
+  }
+}
