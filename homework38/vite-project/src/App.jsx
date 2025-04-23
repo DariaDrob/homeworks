@@ -1,30 +1,17 @@
-import { useState } from 'react';
-import Button from './components/Button';
-import Input from './components/Input';
+import TodoList from './components/TodoList';
+import ClassTodoList from './components/ClassTodoList';
 import './App.css';
 
 function App() {
-    const [text, setText] = useState('');
-
-    const handleButtonClick = () => {
-        alert('You entered: ' + text);
-    };
-
-    const handleInputChange = (event) => {
-        setText(event.target.value);
-    };
-
     return (
         <div className="App">
-            <h1>My First React App</h1>
-            <Input
-                placeholder="Type something..."
-                onChange={handleInputChange}
-            />
-            <Button
-                text="Show Text"
-                onClick={handleButtonClick}
-            />
+            <h1>Мій To-Do List</h1>
+            <div style={{ marginBottom: '40px' }}>
+                <TodoList />
+            </div>
+            <div>
+                <ClassTodoList />
+            </div>
         </div>
     );
 }
