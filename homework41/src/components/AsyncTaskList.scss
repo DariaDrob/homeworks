@@ -1,0 +1,25 @@
+$primary-color: #007bff;
+$error-color: #dc3545;
+
+.async-task-list {
+  margin: 20px 0;
+
+  h2 {
+    color: $primary-color;
+  }
+
+  .loading {
+    color: $primary-color;
+    font-style: italic;
+  }
+
+  .error {
+    color: $error-color;
+    font-weight: bold;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+}
