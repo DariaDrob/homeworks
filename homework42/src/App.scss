@@ -1,0 +1,15 @@
+$primary-color: #007bff;
+
+.App {
+  text-align: center;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+
+  h1 {
+    color: $primary-color;
+  }
+
+  h2 {
+    color: $primary-color;
+  }
+}
