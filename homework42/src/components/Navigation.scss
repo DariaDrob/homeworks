@@ -26,4 +26,19 @@ $primary-color: #007bff;
       color: white;
     }
   }
+
+  button {
+    padding: 5px 10px;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: $primary-color;
+
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
 }
