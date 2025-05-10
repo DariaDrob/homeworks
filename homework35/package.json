@@ -1,0 +1,28 @@
+{
+  "devDependencies": {
+    "@types/lodash": "^4.17.16",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^7.1.2",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.2",
+    "less": "^4.3.0",
+    "less-loader": "^12.2.0",
+    "sass": "^1.86.3",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.95.0",
+    "webpack-bundle-analyzer": "^4.10.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "scripts": {
+    "start": "webpack serve --open",
+    "build": "webpack",
+    "analyze": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json"
+  }
+}
