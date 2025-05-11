@@ -1,5 +1,5 @@
-import AsyncTaskList from './components/AsyncTaskList';
-import './App.scss';
+import AsyncTaskList from './AsyncTaskList.jsx';
+import '../App.scss';
 
 function App() {
     return (
