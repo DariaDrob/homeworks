@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Pastry Chef Cyrillic Script';
+    src: url('./font.ttf') format('truetype');
+}
+
+.title {
+    font-family: 'Pastry Chef Cyrillic Script';
+    color: blue;
+}
