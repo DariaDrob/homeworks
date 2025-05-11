@@ -5,6 +5,13 @@ $primary-color: #007bff;
   --text-color: #000000;
 }
 
+$primary-color: #007bff;
+
+:root {
+  --bg-color: #f0f0f0;
+  --text-color: #000000;
+}
+
 [data-theme='dark'] {
   --bg-color: #333333;
   --text-color: #ffffff;
