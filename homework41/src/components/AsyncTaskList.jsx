@@ -2,24 +2,22 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import TaskItem from './TaskItem';
-import { setTasks, deleteTask, setLoading, setError } from '../redux/actions/taskActions';
+import { setTasks, deleteTask, setLoading, setError } from '../redux/taskSlice';
 import './AsyncTaskList.scss';
 
 function AsyncTaskList() {
-    const tasks = useSelector((state) => state.tasks);
-    const loading = useSelector((state) => state.loading);
-    const error = useSelector((state) => state.error);
+    const { tasks, loading, error } = useSelector((state) => state.tasks);
     const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchTasks = async () => {
-            dispatch(setLoading(true)); // Устанавливаем loading в true
+            dispatch(setLoading(true));
             try {
                 const response = await axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5');
                 const formattedTasks = response.data.map(task => ({ task: task.title, isImportant: task.completed }));
-                dispatch(setTasks(formattedTasks)); // Устанавливаем задачи и сбрасываем loading/error
+                dispatch(setTasks(formattedTasks));
             } catch (err) {
-                dispatch(setError('Не вдалося завантажити завдання')); // Устанавливаем ошибку
+                dispatch(setError('Не вдалося завантажити завдання'));
                 console.error('Не вдалося завантажити завдання', err);
             }
         };
