@@ -1,28 +1,17 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import TaskItem from './TaskItem';
-import { setTasks, deleteTask, setLoading, setError } from '../redux/taskSlice';
+import { fetchTasks, deleteTask } from '../redux/taskSlice';
 import './AsyncTaskList.scss';
 
 function AsyncTaskList() {
-    const { tasks, loading, error } = useSelector((state) => state.tasks);
+    const tasks = useSelector((state) => state.tasks);
+    const loading = useSelector((state) => state.loading);
+    const error = useSelector((state) => state.error);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchTasks = async () => {
-            dispatch(setLoading(true));
-            try {
-                const response = await axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5');
-                const formattedTasks = response.data.map(task => ({ task: task.title, isImportant: task.completed }));
-                dispatch(setTasks(formattedTasks));
-            } catch (err) {
-                dispatch(setError('Не вдалося завантажити завдання'));
-                console.error('Не вдалося завантажити завдання', err);
-            }
-        };
-
-        fetchTasks();
+        dispatch(fetchTasks());
     }, [dispatch]);
 
     const handleDelete = (index) => {
@@ -34,7 +23,7 @@ function AsyncTaskList() {
             <h2>Задачи с сервера</h2>
             {loading && <p className="loading">Загрузка данных...</p>}
             {error && <p className="error">Ошибка: {error}</p>}
-            {!loading && !error && (
+            {!loading && !error && tasks.length > 0 && (
                 <ul>
                     {tasks.map((task, index) => (
                         <TaskItem
@@ -45,6 +34,9 @@ function AsyncTaskList() {
                         />
                     ))}
                 </ul>
+            )}
+            {!loading && !error && tasks.length === 0 && (
+                <p>Нет задач для отображения.</p>
             )}
         </div>
     );
