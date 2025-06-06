@@ -17,10 +17,10 @@ const Home = () => {
                     fontSize: '48px',
                     fontFamily: "'Lobster', cursive",
                     fontStyle: 'italic',
-                    color: '#fff', // Змінюємо колір на білий для кращої видимості
+                    color: '#fff',
                     textAlign: 'center',
                     marginBottom: '24px',
-                    textShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff69b4, 0 0 40px #ff69b4, 2px 2px 5px rgba(0,0,0,0.5)', // Сяйво + тінь
+                    textShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff69b4, 0 0 40px #ff69b4, 2px 2px 5px rgba(0,0,0,0.5)',
                 }}
             >
                 Ласкаво просимо до Квіткового гаю!
