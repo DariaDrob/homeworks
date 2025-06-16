@@ -77,17 +77,35 @@ const Products = ({ setCartItemCount }) => {
                                 />
                             </div>
                             <div style={{ maxHeight: 'calc(100vh - 200px)', overflowY: 'auto', scrollbarWidth: 'thin', scrollbarColor: '#d4d4d4 #f5f5f5' }}>
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px' }}>
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', width: '100%' }}>
                                     {filteredFlowers.map(flower => (
-                                        <div key={flower.id} style={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px', padding: '16px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-                                            <img src={flower.image} alt={flower.name} style={{ width: '100%', height: '192px', objectFit: 'cover', borderRadius: '4px', marginBottom: '16px' }} />
-                                            <h2 style={{ fontSize: '18px', fontWeight: '500', color: '#333', marginBottom: '8px' }}>{flower.name}</h2>
-                                            <p style={{ color: '#666', marginBottom: '8px' }}>Від {flower.price} грн</p>
-                                            {renderStars(flower.rating)}
-                                            <Link to={`/product/${flower.id}`} style={{ marginTop: '16px', display: 'inline-block', color: '#333', textDecoration: 'none' }}>
-                                                Детальніше
-                                            </Link>
-                                        </div>
+                                        <Link
+                                            to={`/product/${flower.id}`}
+                                            key={flower.id}
+                                            style={{
+                                                textDecoration: 'none',
+                                                color: 'inherit',
+                                                display: 'block',
+                                            }}
+                                        >
+                                            <div
+                                                style={{
+                                                    backgroundColor: '#fff',
+                                                    border: '1px solid #e5e7eb',
+                                                    borderRadius: '8px',
+                                                    padding: '16px',
+                                                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                                                    transition: 'transform 0.2s',
+                                                }}
+                                                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.02)')}
+                                                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                                            >
+                                                <img src={flower.image} alt={flower.name} style={{ width: '100%', height: '192px', objectFit: 'cover', borderRadius: '4px', marginBottom: '16px' }} />
+                                                <h2 style={{ fontSize: '18px', fontWeight: '500', color: '#333', marginBottom: '8px' }}>{flower.name}</h2>
+                                                <p style={{ color: '#666', marginBottom: '8px' }}>Від {flower.price} грн</p>
+                                                {renderStars(flower.rating)}
+                                            </div>
+                                        </Link>
                                     ))}
                                 </div>
                             </div>

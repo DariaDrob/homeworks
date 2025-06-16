@@ -8,6 +8,7 @@ const ProductDetail = ({ setCartItemCount }) => {
     const [flower, setFlower] = useState(null);
     const { cart, addToCart } = useContext(CartContext);
     const [quantity, setQuantity] = useState(1);
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         flowerService.getFlowers()
@@ -84,13 +85,13 @@ const ProductDetail = ({ setCartItemCount }) => {
                 return {
                     description: "Блакитні гортензії — розкішні квіти з великими суцвіттями. Їх стебла заввишки 50 см створюють ефектний букет.",
                     forWhom: "Для тих, хто любить вишуканість: мами, подруги чи колеги.",
-                    situations: "Підходить для весіль, ювілеїв чи офіційних подій.",
+                    situations: "Підходить для весілля, ювілеїв чи офіційних подій.",
                 };
             case 10: // Троянди білі
                 return {
                     description: "Білі троянди — символ чистоти та ніжності. Їх стебла заввишки 50 см ідеально підходять для вишуканих букетів.",
                     forWhom: "Для коханої, мами чи подруги, яка цінує елегантність.",
-                    situations: "Ідеально для весіль, хрещин чи подарунка на знак поваги.",
+                    situations: "Ідеально для весілля, хрещин чи подарунка на знак поваги.",
                 };
             case 11: // Тюльпани рожеві
                 return {
@@ -102,7 +103,7 @@ const ProductDetail = ({ setCartItemCount }) => {
                 return {
                     description: "Білі лілії — символ чистоти та вишуканості. Їх стебла заввишки 50 см наповнюють простір ніжним ароматом.",
                     forWhom: "Для мами, бабусі чи подруги, яка цінує класику.",
-                    situations: "Чудово для офіційних подій, весіль чи подарунка на свято.",
+                    situations: "Чудово для офіційних подій, весілля чи подарунка на свято.",
                 };
             case 13: // Піони рожеві
                 return {
@@ -120,7 +121,7 @@ const ProductDetail = ({ setCartItemCount }) => {
                 return {
                     description: "Рожеві гортензії — символ ніжності та гармонії. Їх стебла заввишки 50 см створюють пишний і ефектний букет.",
                     forWhom: "Для мами, коханої чи подруги, яка любить м’які відтінки.",
-                    situations: "Чудово для весіль, ювілеїв чи подарунка на свято.",
+                    situations: "Чудово для весілля, ювілеїв чи подарунка на свято.",
                 };
             default:
                 return {
@@ -133,6 +134,16 @@ const ProductDetail = ({ setCartItemCount }) => {
 
     const details = getFlowerDetails(flower.id);
     const totalPrice = flower.price * quantity;
+
+    const handleAddToCart = () => {
+        addToCart({ ...flower, quantity, totalPrice });
+        setShowPopup(true);
+        console.log('Added to cart:', { ...flower, quantity, totalPrice });
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+    };
 
     return (
         <div className="blurred-background">
@@ -158,16 +169,43 @@ const ProductDetail = ({ setCartItemCount }) => {
                             </div>
                             <p style={{ fontSize: '20px', fontWeight: '500', color: '#333', marginBottom: '16px' }}>Загальна сума: {totalPrice} грн</p>
                             <button
-                                onClick={() => {
-                                    addToCart({ ...flower, quantity, totalPrice });
-                                    console.log('Added to cart:', { ...flower, quantity, totalPrice });
-                                }}
+                                onClick={handleAddToCart}
                                 style={{ backgroundColor: '#4B5563', color: 'white', padding: '8px 24px', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
                             >
                                 Додати до кошика
                             </button>
                         </div>
                     </div>
+                    {showPopup && (
+                        <div
+                            style={{
+                                position: 'fixed',
+                                top: '50%',
+                                left: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                                padding: '20px',
+                                borderRadius: '8px',
+                                boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+                                zIndex: 1000,
+                                textAlign: 'center',
+                            }}
+                        >
+                            <h2 style={{ marginBottom: '16px', color: '#333' }}>Товар додано до кошика!</h2>
+                            <button
+                                onClick={() => { closePopup(); }}
+                                style={{ marginRight: '10px', backgroundColor: '#4B5563', color: 'white', padding: '8px 16px', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
+                            >
+                                Продовжити покупки
+                            </button>
+                            <button
+                                onClick={() => { closePopup(); window.location.href = '/cart'; }}
+                                style={{ backgroundColor: '#4B5563', color: 'white', padding: '8px 16px', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
+                            >
+                                Перейти до кошика
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
