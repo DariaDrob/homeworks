@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інтелектуальна інформаційна система</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #alarmImage {
+            display: none;
+            max-width: 1200px;
+            max-height: 600px;
+            margin: 10px auto;
+            display: block;
+        }
+        .error-message {
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: #fff3e0;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .error-submessage {
+            font-size: 0.9em;
+            text-align: center;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Інтелектуальна інформаційна система</h1>
+    <h2>Швидкий доступ</h2>
+    <div class="button-group">
+        <button onclick="inputNewData()">Ввести нові дані</button>
+        <button onclick="showResults()">Показати результати</button>
+        <button onclick="clearData()">Очистити дані</button>
+        <button onclick="showHistory()">Показати історію</button>
+    </div>
+
+    <div class="input-section">
+        <h2>Ведення даних</h2>
+        <p>Попит за попередні місяці (через кому, наприклад, 100, 150, 150, 140):</p>
+        <input type="text" id="demandInput" value="115, 113, 158, 149, 120"><br>
+        <p>Витрати на замовлення :</p>
+        <input type="number" id="orderingCost" value="70"><br>
+        <p>Витрати на зберігання одиниці :</p>
+        <input type="number" id="holdingCost" value="2"><br>
+        <p>Початкові витрати на зберігання (за 5 місяців, умовні одиниці):</p>
+        <input type="number" id="initialStorageCost" value="1200"><br>
+        <button onclick="calculate()">Розрахувати</button>
+        <div id="error"></div>
+        <img id="alarmImage" src="alarm.png" alt="Попередження">
+    </div>
+
+    <section id="results" style="display: none;">
+        <h2>Результати</h2>
+        <table border="1">
+            <tr>
+                <th>Параметр</th>
+                <th>Значення</th>
+            </tr>
+            <tr>
+                <td>Прогнозований попит (наступний місяць)</td>
+                <td id="forecastResult"></td>
+            </tr>
+            <tr>
+                <td>Оптимальний обсяг замовлення (EOQ)</td>
+                <td id="eoqResult"></td>
+            </tr>
+            <tr>
+                <td>Рекомендований обсяг запасів</td>
+                <td id="recommendationResult"></td>
+            </tr>
+            <tr>
+                <td>Початкові витрати на зберігання (5 місяців)</td>
+                <td id="initialCostResult"></td>
+            </tr>
+            <tr>
+                <td>Витрати після оптимізації (5 місяців)</td>
+                <td id="optimizedCostResult"></td>
+            </tr>
+            <tr>
+                <td>Економія (%)</td>
+                <td id="savingsResult"></td>
+            </tr>
+        </table>
+        <canvas id="demandChart" width="400" height="200"></canvas>
+
+        <h3>Тренд попиту</h3>
+        <canvas id="trendChart" width="1000" height="300" onclick="openTrendPopup()"></canvas>
+
+        <h3>Розподіл витрат</h3>
+        <canvas id="costChart" width="600" height="300"></canvas>
+        <div id="costLegend">
+            <p>Легенда: Замовлення - <span style="color: #FF6384;">■</span>, Зберігання - <span style="color: #36A2EB;">■</span></p>
+        </div>
+        <h3>Економічна ефективність</h3>
+        <canvas id="efficiencyChart" width="600" height="300"></canvas>
+    </section>
+
+    <!-- Модальне вікно для Тренд попиту -->
+    <div id="trendPopup" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeTrendPopup()">×</span>
+            <canvas id="trendPopupChart" width="600" height="300"></canvas>
+        </div>
+    </div>
+
+    <!-- Модальне вікно для історії -->
+    <div id="historyPopup" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeHistoryPopup()">×</span>
+            <h3>Історія запитів</h3>
+            <div id="historyList"></div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
