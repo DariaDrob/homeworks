@@ -1,0 +1,21 @@
+html
+    head
+        title Головна сторінка
+        link(rel="icon" href="/favicon.ico")
+        style.
+            body {
+                background-color: #{theme === 'dark' ? '#333' : '#fff'};
+                color: #{theme === 'dark' ? '#fff' : '#000'};
+            }
+    body
+        h1 Ласкаво просимо!
+        form(action="/set-theme" method="POST")
+            label Виберіть тему:
+            select(name="theme")
+                option(value="light" selected=theme === 'light') Світла
+                option(value="dark" selected=theme === 'dark') Темна
+            button(type="submit") Зберегти
+        p
+            a(href="/ejs") Переглянути EJS версію
+        p
+            a(href="/protected") Перейти до захищеного маршруту
