@@ -9,6 +9,14 @@ html
             }
     body
         h1 Ласкаво просимо!
+        if user
+            p Ви увійшли як #{user.email}
+            a(href="/logout") Вийти
+        else
+            p
+                a(href="/login") Увійти
+            p
+                a(href="/register") Зареєструватися
         form(action="/set-theme" method="POST")
             label Виберіть тему:
             select(name="theme")

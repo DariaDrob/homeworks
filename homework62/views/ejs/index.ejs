@@ -12,6 +12,13 @@
 </head>
 <body>
 <h1>Ласкаво просимо!</h1>
+<% if (user) { %>
+    <p>Ви увійшли як <%= user.email %></p>
+    <a href="/logout">Вийти</a>
+<% } else { %>
+    <p><a href="/login">Увійти</a></p>
+    <p><a href="/register">Зареєструватися</a></p>
+<% } %>
 <form action="/set-theme" method="POST">
     <label>Виберіть тему:</label>
     <select name="theme">
@@ -20,7 +27,7 @@
     </select>
     <button type="submit">Зберегти</button>
 </form>
-<p><a href="/">Переглянути PUG версію</a></p>
+<p><a href="/ejs">Переглянути EJS версію</a></p>
 <p><a href="/protected">Перейти до захищеного маршруту</a></p>
 </body>
 </html>

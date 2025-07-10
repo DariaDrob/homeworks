@@ -1,0 +1,13 @@
+html
+    head
+        title Захищена сторінка
+        link(rel="icon" href="/favicon.ico")
+        style.
+            body {
+                background-color: #{theme === 'dark' ? '#333' : '#fff'};
+                color: #{theme === 'dark' ? '#fff' : '#000'};
+            }
+    body
+        h1 Привіт, #{user.email}!
+        p Це захищена сторінка.
+        a(href="/") Повернутися на головну

@@ -1,0 +1,23 @@
+html
+    head
+        title Вхід
+        link(rel="icon" href="/favicon.ico")
+        style.
+            body {
+                background-color: #{theme === 'dark' ? '#333' : '#fff'};
+                color: #{theme === 'dark' ? '#fff' : '#000'};
+            }
+    body
+        h1 Вхід
+        form(action="/login" method="POST")
+            label Email:
+            input(type="email" name="email" required)
+            br
+            label Пароль:
+            input(type="password" name="password" required)
+            br
+            button(type="submit") Увійти
+        p
+            a(href="/register") Зареєструватися
+        p
+            a(href="/") Повернутися на головну
