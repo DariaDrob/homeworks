@@ -4,14 +4,29 @@ const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const { MongoClient, ObjectId } = require('mongodb');
+const bcrypt = require('bcrypt');
 
 const app = express();
 const port = 3000;
 
 
-const users = [
-    { id: 1, email: 'user1@example.com', password: 'password123' }
-];
+const uri = "mongodb+srv://daradrobotenko:hlCYSXNlWOlTvvD6@cluster0.39p1x3j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+let db;
+
+
+async function connectToMongo() {
+    try {
+        await client.connect();
+        console.log('Підключено до MongoDB Atlas');
+        db = client.db('myDatabase');
+    } catch (err) {
+        console.error('Помилка підключення до MongoDB:', err);
+        process.exit(1);
+    }
+}
+connectToMongo();
 
 
 app.use(express.json());
@@ -33,24 +48,32 @@ app.set('views', path.join(__dirname, 'views/pug'));
 
 
 passport.use(new LocalStrategy(
-    { usernameField: 'email' }, // Використовуємо email замість username
-    (email, password, done) => {
-        const user = users.find(u => u.email === email && u.password === password);
-        if (!user) {
-            return done(null, false, { message: 'Неправильний email або пароль' });
+    { usernameField: 'email' },
+    async (email, password, done) => {
+        try {
+            const user = await db.collection('users').findOne({ email });
+            if (!user || !await bcrypt.compare(password, user.password)) {
+                return done(null, false, { message: 'Неправильний email або пароль' });
+            }
+            return done(null, user);
+        } catch (err) {
+            return done(err);
         }
-        return done(null, user);
     }
 ));
 
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user._id.toString());
 });
 
-passport.deserializeUser((id, done) => {
-    const user = users.find(u => u.id === id);
-    done(null, user);
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await db.collection('users').findOne({ _id: new ObjectId(id) });
+        done(null, user);
+    } catch (err) {
+        done(err);
+    }
 });
 
 
@@ -87,17 +110,24 @@ app.get('/register', (req, res) => {
     res.render('register', { theme });
 });
 
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
         return res.status(400).render('register', { theme: req.cookies.theme || 'light', error: 'Заповніть усі поля' });
     }
-    if (users.find(u => u.email === email)) {
-        return res.status(400).render('register', { theme: req.cookies.theme || 'light', error: 'Користувач уже існує' });
+    try {
+        const existingUser = await db.collection('users').findOne({ email });
+        if (existingUser) {
+            return res.status(400).render('register', { theme: req.cookies.theme || 'light', error: 'Користувач уже існує' });
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = { email, password: hashedPassword };
+        await db.collection('users').insertOne(user);
+        res.redirect('/login');
+    } catch (err) {
+        console.error('Помилка при реєстрації:', err);
+        res.status(500).send('Помилка сервера');
     }
-    const user = { id: users.length + 1, email, password };
-    users.push(user);
-    res.redirect('/login');
 });
 
 app.get('/logout', (req, res, next) => {
@@ -119,6 +149,18 @@ app.post('/set-theme', (req, res) => {
     }
     res.cookie('theme', theme, { maxAge: 900000, httpOnly: true });
     res.redirect('back');
+});
+
+
+app.get('/users', isAuthenticated, async (req, res) => {
+    try {
+        const theme = req.cookies.theme || 'light';
+        const users = await db.collection('users').find({}, { projection: { email: 1, _id: 0 } }).toArray();
+        res.render('users', { theme, users, user: req.user });
+    } catch (err) {
+        console.error('Помилка при отриманні користувачів:', err);
+        res.status(500).send('Помилка сервера');
+    }
 });
 
 
