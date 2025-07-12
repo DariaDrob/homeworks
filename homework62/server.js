@@ -12,7 +12,7 @@ const port = 3000;
 
 
 const uri = "mongodb+srv://daradrobotenko:hlCYSXNlWOlTvvD6@cluster0.39p1x3j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri);
 let db;
 
 
@@ -37,7 +37,7 @@ app.use(session({
     secret: 'mysecretkey',
     resave: false,
     saveUninitialized: false,
-    cookie: { httpOnly: true, secure: false, maxAge: 24 * 60 * 60 * 1000 } // 1 день
+    cookie: { httpOnly: true, secure: false, maxAge: 24 * 60 * 60 * 1000 }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -62,7 +62,6 @@ passport.use(new LocalStrategy(
     }
 ));
 
-
 passport.serializeUser((user, done) => {
     done(null, user._id.toString());
 });
@@ -76,11 +75,8 @@ passport.deserializeUser(async (id, done) => {
     }
 });
 
-
 const isAuthenticated = (req, res, next) => {
-    if (req.isAuthenticated()) {
-        return next();
-    }
+    if (req.isAuthenticated()) return next();
     res.redirect('/login');
 };
 
@@ -151,7 +147,6 @@ app.post('/set-theme', (req, res) => {
     res.redirect('back');
 });
 
-
 app.get('/users', isAuthenticated, async (req, res) => {
     try {
         const theme = req.cookies.theme || 'light';
@@ -160,6 +155,139 @@ app.get('/users', isAuthenticated, async (req, res) => {
     } catch (err) {
         console.error('Помилка при отриманні користувачів:', err);
         res.status(500).send('Помилка сервера');
+    }
+});
+
+
+app.post('/users/insertOne', isAuthenticated, async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        return res.status(400).json({ error: 'Заповніть усі поля' });
+    }
+    try {
+        const existingUser = await db.collection('users').findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ error: 'Користувач уже існує' });
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = { email, password: hashedPassword };
+        const result = await db.collection('users').insertOne(user);
+        res.json({ message: 'Користувач доданий', insertedId: result.insertedId });
+    } catch (err) {
+        console.error('Помилка при вставці:', err);
+        res.status(500).json({ error: 'Помилка сервера' });
+    }
+});
+
+app.post('/users/insertMany', isAuthenticated, async (req, res) => {
+    const users = req.body;
+    if (!Array.isArray(users) || users.length === 0) {
+        return res.status(400).json({ error: 'Надішліть масив користувачів' });
+    }
+    try {
+        const hashedUsers = await Promise.all(users.map(async user => {
+            const hashedPassword = await bcrypt.hash(user.password, 10);
+            return { email: user.email, password: hashedPassword };
+        }));
+        const result = await db.collection('users').insertMany(hashedUsers);
+        res.json({ message: 'Користувачі додані', insertedIds: result.insertedIds });
+    } catch (err) {
+        console.error('Помилка при вставці кількох:', err);
+        res.status(500).json({ error: 'Помилка сервера' });
+    }
+});
+
+
+app.post('/users/updateOne', isAuthenticated, async (req, res) => {
+    const { email, newPassword } = req.body;
+    if (!email || !newPassword) {
+        return res.status(400).json({ error: 'Заповніть усі поля' });
+    }
+    try {
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        const result = await db.collection('users').updateOne(
+            { email },
+            { $set: { password: hashedPassword } }
+        );
+        if (result.modifiedCount === 0) {
+            return res.status(404).json({ error: 'Користувач не знайдений' });
+        }
+        res.json({ message: 'Пароль оновлено' });
+    } catch (err) {
+        console.error('Помилка при оновленні:', err);
+        res.status(500).json({ error: 'Помилка сервера' });
+    }
+});
+
+app.post('/users/updateMany', isAuthenticated, async (req, res) => {
+    const { query, newPassword } = req.body;
+    if (!query || !newPassword) {
+        return res.status(400).json({ error: 'Заповніть усі поля' });
+    }
+    try {
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        const result = await db.collection('users').updateMany(
+            query,
+            { $set: { password: hashedPassword } }
+        );
+        res.json({ message: `Оновлено ${result.modifiedCount} користувачів` });
+    } catch (err) {
+        console.error('Помилка при оновленні кількох:', err);
+        res.status(500).json({ error: 'Помилка сервера' });
+    }
+});
+
+app.post('/users/replaceOne', isAuthenticated, async (req, res) => {
+    const { email, newUser } = req.body;
+    if (!email || !newUser) {
+        return res.status(400).json({ error: 'Заповніть усі поля' });
+    }
+    try {
+        const hashedPassword = await bcrypt.hash(newUser.password, 10);
+        const replacement = { ...newUser, password: hashedPassword };
+        const result = await db.collection('users').replaceOne(
+            { email },
+            replacement
+        );
+        if (result.modifiedCount === 0) {
+            return res.status(404).json({ error: 'Користувач не знайдений' });
+        }
+        res.json({ message: 'Користувач замінено' });
+    } catch (err) {
+        console.error('Помилка при заміні:', err);
+        res.status(500).json({ error: 'Помилка сервера' });
+    }
+});
+
+
+app.post('/users/deleteOne', isAuthenticated, async (req, res) => {
+    const { email } = req.body;
+    if (!email) {
+        return res.status(400).json({ error: 'Вкажіть email' });
+    }
+    try {
+        const result = await db.collection('users').deleteOne({ email });
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ error: 'Користувач не знайдений' });
+        }
+        res.json({ message: 'Користувач видалено' });
+    } catch (err) {
+        console.error('Помилка при видаленні:', err);
+        res.status(500).json({ error: 'Помилка сервера' });
+    }
+});
+
+app.post('/users/deleteMany', isAuthenticated, async (req, res) => {
+    const { query } = req.body;
+    if (!query) {
+        return res.status(400).json({ error: 'Вкажіть критерій' });
+    }
+    try {
+        const result = await db.collection('users').deleteMany(query);
+        res.json({ message: `Видалено ${result.deletedCount} користувачів` });
+    } catch (err) {
+        console.error('Помилка при видаленні кількох:', err);
+        res.status(500).json({ error: 'Помилка сервера' });
     }
 });
 
