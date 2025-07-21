@@ -1,0 +1,9 @@
+doctype html
+html
+    head
+        title Stats
+    body
+        h1 Статистика користувачів
+        p Загальна кількість користувачів: #{stats.totalUsers}
+        p Середня довжина пароля: #{stats.avgPasswordLength.toFixed(2)}
+        a(href='/') Повернутися на головну

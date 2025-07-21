@@ -150,14 +150,17 @@ app.post('/set-theme', (req, res) => {
 app.get('/users', isAuthenticated, async (req, res) => {
     try {
         const theme = req.cookies.theme || 'light';
-        const users = await db.collection('users').find({}, { projection: { email: 1, _id: 0 } }).toArray();
-        res.render('users', { theme, users, user: req.user });
+        const users = [];
+        const cursor = db.collection('users').find({}, { projection: { email: 1, _id: 0 } });
+        await cursor.forEach(user => users.push(user), (err) => {
+            if (err) throw err;
+            res.render('users', { theme, users, user: req.user });
+        });
     } catch (err) {
         console.error('Помилка при отриманні користувачів:', err);
         res.status(500).send('Помилка сервера');
     }
 });
-
 
 app.post('/users/insertOne', isAuthenticated, async (req, res) => {
     const { email, password } = req.body;
@@ -196,7 +199,6 @@ app.post('/users/insertMany', isAuthenticated, async (req, res) => {
         res.status(500).json({ error: 'Помилка сервера' });
     }
 });
-
 
 app.post('/users/updateOne', isAuthenticated, async (req, res) => {
     const { email, newPassword } = req.body;
@@ -259,7 +261,6 @@ app.post('/users/replaceOne', isAuthenticated, async (req, res) => {
     }
 });
 
-
 app.post('/users/deleteOne', isAuthenticated, async (req, res) => {
     const { email } = req.body;
     if (!email) {
@@ -288,6 +289,25 @@ app.post('/users/deleteMany', isAuthenticated, async (req, res) => {
     } catch (err) {
         console.error('Помилка при видаленні кількох:', err);
         res.status(500).json({ error: 'Помилка сервера' });
+    }
+});
+
+
+app.get('/stats', isAuthenticated, async (req, res) => {
+    try {
+        const theme = req.cookies.theme || 'light';
+        const result = await db.collection('users').aggregate([
+            { $group: {
+                    _id: null,
+                    totalUsers: { $sum: 1 },
+                    avgPasswordLength: { $avg: { $strLenCP: '$password' } }
+                } }
+        ]).toArray();
+        const stats = result[0] || { totalUsers: 0, avgPasswordLength: 0 };
+        res.render('stats', { theme, stats, user: req.user });
+    } catch (err) {
+        console.error('Помилка при отриманні статистики:', err);
+        res.status(500).send('Помилка сервера');
     }
 });
 
