@@ -1,0 +1,144 @@
+use flower_shop_db
+
+db.createCollection("reviews")
+
+db.reviews.createIndex({ productId: 1 })
+
+db.reviews.insertOne({
+  productId: 1,
+  text: "Дуже красиві троянди, доставка швидка! Рекомендую!",
+  rating: 5,
+  date: new Date()
+})
+
+db.reviews.drop()
+
+show collections
+
+db.products.insertMany([
+  {
+    id: 1,
+    name: "Троянди червоні",
+    category: "Троянди",
+    price: 2500,
+    image: "/images/red-roses.jpg",
+    description: "Класичні червоні троянди, 50 см",
+    rating: 4.8,
+    stock: 50
+  },
+  {
+    id: 2,
+    name: "Тюльпани білі",
+    category: "Тюльпани",
+    price: 1500,
+    image: "/images/white-tulips.jpg",
+    description: "Свіжі білі тюльпани, 40 см",
+    rating: 4.5,
+    stock: 30
+  },
+  {
+    id: 3,
+    name: "Соняшники",
+    category: "Соняшники",
+    price: 2000,
+    image: "/images/sunflowers.jpg",
+    description: "Яскраві соняшники, 60 см",
+    rating: 4.7,
+    stock: 20
+  }
+])
+
+db.products.createIndex({ id: 1 })
+
+db.products.deleteOne({ id: 1 })
+
+db.products.find({ id: 2 }).pretty()
+
+db.products.find({ stock: { $gt: 25 } }, { name: 1, stock: 1, _id: 0 }).pretty()
+
+use test_db
+
+db.test_collection.insertOne({
+  id: 16,
+  name: "Орхідеї білі",
+  category: "Орхідеї",
+  price: 3500,
+  image: "/images/white-orchids.jpg",
+  description: "Екзотичні білі орхідеї, 40 см",
+  rating: 4.9,
+  stock: 15,
+  createdAt: new Date()
+})
+
+
+use flower_shop_db
+
+
+db.products.updateOne({ name: "Троянди червоні" }, { $set: { price: 2600, stock: 45 } }) 
+
+
+db.products.updateMany({ category: "Троянди" }, { $mul: { price: 1.10 } })
+
+
+db.products.find({ category: "Троянди" }, { name: 1, _id: 0 })
+
+
+db.products.find({ category: "Тюльпани" }, { name: 1, _id: 0 }).toArray().map(v => v.name)
+
+
+db.products.find({ name: { $regex: /^Тюль/i } }, { name: 1, _id: 0 }).toArray().map(v => v.name)
+
+
+db.products.find({ rating: { $gt: 4.6 } }, { name: 1, price: 1, rating: 1, _id: 0 }).pretty()
+
+
+db.products.aggregate([
+  {
+    $group: {
+      _id: "$category",
+      totalProducts: { $sum: 1 },
+      averagePrice: { $avg: "$price" },
+      productsList: { $push: "$name" }
+    }
+  }
+])
+
+
+db.products.aggregate([
+  { $match: { price: { $gt: 2000 } } },
+  {
+    $group: {
+      _id: "$price",
+      count: { $sum: 1 },
+      products: { $push: { name: "$name", rating: "$rating" } }
+    }
+  },
+  { $sort: { _id: 1 } }
+])
+
+
+db.products.aggregate([
+  {
+    $group: {
+      _id: "$category",
+      avgPrice: { $avg: "$price" },
+      productCount: { $sum: 1 },
+      topRated: { $push: { name: "$name", rating: "$rating" } }
+    }
+  },
+  { $sort: { avgPrice: -1 } }
+])
+
+
+db.products.findOneAndDelete({}, { sort: { price: 1 } })
+
+
+db.products.deleteMany({ price: { $lt: 1500 } })
+
+
+db.products.updateMany(
+  { rating: { $gt: 4.7 } },
+  { $set: { discount: 10 } }
+)
+
+db.products.find({ discount: { $exists: true } }, { name: 1, price: 1, discount: 1, _id: 0 }).pretty()
