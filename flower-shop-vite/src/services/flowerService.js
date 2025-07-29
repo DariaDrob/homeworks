@@ -17,7 +17,21 @@ const flowerService = {
             { id: 14, name: "Еустоми білі", category: "Еустоми", price: 2100, image: "/images/white-eustomas.jpg", description: "Білі еустоми, 45 см", rating: 4.6 },
             { id: 15, name: "Гортензії рожеві", category: "Гортензії", price: 2800, image: "/images/pink-hydrangeas.jpg", description: "Рожеві гортензії, 50 см", rating: 4.9 },
         ];
-    }
+    },
+    placeOrder: async (orderData) => {
+        try {
+            const response = await fetch('http://localhost:3000/api/orders', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(orderData),
+            });
+            if (!response.ok) throw new Error('Network response was not ok');
+            return await response.json();
+        } catch (error) {
+            console.error('Error placing order:', error);
+            return null;
+        }
+    },
 };
 
 export default flowerService;

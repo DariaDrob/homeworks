@@ -33,7 +33,7 @@ export const CartProvider = ({ children }) => {
     const updateQuantity = (id, quantity, price) => {
         setCart(prev =>
             prev.map(item =>
-                item.id === item.id ? { ...item, quantity, totalPrice: price * quantity } : item
+                item.id === id ? { ...item, quantity, totalPrice: price * quantity } : item
             )
         );
     };
